@@ -1,36 +1,32 @@
 "use client";
 
-import React from "react";
-import { useState, useEffect } from "react";
-import Confetti from "react-confetti";
+import React, { useEffect } from "react";
+import { useReward } from "react-rewards";
 import { motion } from "framer-motion";
 import Aquarium from "../assets/aquarium.jpg";
 import Trip from "../assets/trip.png";
 import Image from "next/image";
 
 export default function BaseAquarium() {
-  const [showConfetti, setShowConfetti] = useState(true);
+  const { reward: confettiReward } = useReward("confettiReward", "confetti");
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowConfetti(false);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
+    confettiReward();
+  }, [confettiReward]);
 
   return (
     <div style={styles.container}>
-      {showConfetti && (
-        <Confetti width={window.innerWidth} height={window.innerHeight} />
-      )}
-      <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        style={styles.header}
-      >
-        🎉 Surprise! 🎉
-      </motion.div>
+      <div>
+        <span id="confettiReward" style={{ position: "absolute" }} />
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          style={styles.header}
+        >
+          🎉 Surprise! 🎉
+        </motion.div>
+      </div>
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
