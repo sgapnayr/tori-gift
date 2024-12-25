@@ -1,12 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import confetti from "canvas-confetti";
 import Aquarium from "../../../assets/aquarium.jpg";
 import Trip from "../../../assets/trip.png";
 import Image from "next/image";
 
 export default function BaseAquarium() {
+  useEffect(() => {
+    // Fire confetti when the component mounts
+    confetti({
+      particleCount: 150,
+      spread: 60,
+      origin: { y: 0.6 }, // Start slightly above the middle of the screen
+      colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00"],
+    });
+  }, []);
+
   return (
     <div style={styles.container}>
       <div>
