@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Aquarium from "../assets/aquarium.jpg";
-import Trip from "../assets/trip.png";
+import Aquarium from "../../../assets/aquarium.jpg";
+import Trip from "../../../assets/trip.png";
 import Image from "next/image";
 
 export default function BaseAquarium() {
